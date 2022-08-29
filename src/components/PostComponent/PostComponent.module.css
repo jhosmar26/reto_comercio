@@ -1,0 +1,15 @@
+.post_wrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.title{
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.separator{
+  width: 100%;
+  border-style: solid;
+}
