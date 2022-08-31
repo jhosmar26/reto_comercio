@@ -1,4 +1,3 @@
-// import logo from './logo.svg';
 import './globalStyles.css';
 
 import HomePage from "./pages/HomePage/HomePage";
