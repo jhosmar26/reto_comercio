@@ -11,28 +11,6 @@ function HomePage() {
   const [ableToRequestWithScroll, setAbleToRequestWithScroll] = useState(true);
   const [searchValue, setSearchValue] = useState("");
 
-  async function getPosts(id, userName) {
-    setPosts([...posts, ...(await api.getPostsOfUser(id, userName))]);
-  }
-
-  function handleLocalStorage() {
-    const localValues = JSON.parse(localStorage.getItem("users"));
-    setPosts(Object.values(localValues).flat());
-  }
-
-  async function handleUserName(id) {
-    try {
-      const response = await api.getUserName(id);
-      return response;
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  function checkToClearLocalStorage(currentTime, lastTimeChecked) {
-    return currentTime - lastTimeChecked > 180000;
-  }
-
   useEffect(() => {
     const currentTime = new Date();
     const lastTimeChecked = localStorage.getItem("lastTimeChecked");
@@ -62,6 +40,28 @@ function HomePage() {
       ? setLoaderVisible(true)
       : setLoaderVisible(false);
   }, [searchValue])
+
+  async function getPosts(id, userName) {
+    setPosts([...posts, ...(await api.getPostsOfUser(id, userName))]);
+  }
+
+  function handleLocalStorage() {
+    const localValues = JSON.parse(localStorage.getItem("users"));
+    setPosts(Object.values(localValues).flat());
+  }
+
+  async function handleUserName(id) {
+    try {
+      const response = await api.getUserName(id);
+      return response;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  function checkToClearLocalStorage(currentTime, lastTimeChecked) {
+    return currentTime - lastTimeChecked > 180000;
+  }
 
   const handleScroll = (event) => {
     if(!ableToRequestWithScroll) {

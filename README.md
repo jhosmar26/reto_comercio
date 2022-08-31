@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+# Minuto a minuto
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto está realizado en react sin librerias y con css modular.\
+Los datos consultados son de la api [JSONPlaceholder](https://jsonplaceholder.typicode.com/) del cual se utiliza para obtener los posts y los nombres de los usuarios.
 
-## Available Scripts
+## Páginas
 
-In the project directory, you can run:
+solo hay 1 página `Home` el cual contiene a la `cabecera` y se inseró una condicional para renderizar las publicaciones filtradas dependiendo de si el `buscador` esté vacío o no. También se añadió un spiner para dar sensación de respuesta mientras se ejecuta una petición al api.
 
-### `npm start`
+Se colocó 2 `useEffect`. En el primero se verifica si hay un dato guardado en el localStorage nombrado como `lastTimeChecked` para compararlo con la hora actual, si la diferencia es de 3 minutos se limpia el localStorage. En la misma función se verifica en el localStorage por el dato de `usuarios` para insertarlos en el estado de las publicaciones, también se consulta por el nombre del usuario actual con su id.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+En el segundo `useEffect` se observa el estado del buscador para mostrar o esconder el spiner de carga.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+la función
 
-### `npm test`
+## Componentes
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Se separaron los siguentes componentes:
 
-### `npm run build`
+### `Header`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+La `cabezera` o `header` envuelve al componente `buscador` conocido como `searcher`.\
+Recibe como props a el estado de la busqueda y a su manejador para enviarlos al componente `buscador`.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `Searcher`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Este componente recibe el estado y manejador de la busqueda para utilizarla en el input que renderiza.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### `Post`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Este componente recibe 3 props:\
+-El título\
+-La descripción\
+-Y el usuario
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+también incluye un separador para marcar la diferencia entre los posts renderizados.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## API file
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+El archivo `api` exporta un objeto que contiene las funciones que harán la consulta al api de `JSONPlaceholder` y también se colocó una función para guardar la respuesta en el local storage de los posts de los usuarios.
