@@ -2,8 +2,6 @@ const BASE_URL = "https://jsonplaceholder.typicode.com/";
 
 export const api = {
   getPostsOfUser: async function(userId, userName) {
-    // const userName = await this.getUserName(userId);
-
     const response = await fetch(BASE_URL + "users/" + userId + "/posts");
     const data = await response.json();
     data.map(el => {
@@ -26,7 +24,10 @@ export const api = {
 
   getUserName: async function(userId) {
     const response = await fetch(BASE_URL + "users/" + userId);
-    const data = await response.json();
-    return data.name;
+    if(response.ok) {
+      const data = await response.json();
+      return data.name;
+    }
+    throw "aea"
   }
 }

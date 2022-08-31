@@ -1,13 +1,13 @@
 import React from 'react'
 import SearcherComponent from '../SearcherComponent/SearcherComponent.jsx'
-import styles from "./HeaderStyles.module.css"
+import styles from "./HeaderComponent.module.css"
 
-function HeaderComponent() {
+function HeaderComponent({searchValue, handleSetSearchValue}) {
   return (
     <div className={styles.header_bg}>
       <div className={styles.header_wrapper}>
         <div>Minuto a minuto</div>
-        <SearcherComponent/>
+        <SearcherComponent searchValue={searchValue} handleSetSearchValue={handleSetSearchValue}/>
       </div>
     </div>
   )
@@ -15,13 +15,3 @@ function HeaderComponent() {
 
 
 export default HeaderComponent
-
-// import React from 'react'
-
-// function HeaderComponent() {
-//   return (
-//     <div>HeaderComponent</div>
-//   )
-// }
-
-// export default HeaderComponent

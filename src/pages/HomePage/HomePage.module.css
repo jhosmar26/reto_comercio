@@ -1,11 +1,14 @@
-.posts_scroll{
+.host{
   height: 100vh;
-  overflow: scroll;
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .posts_wrapper{
   max-width: 1024px;
   margin: auto;
+  margin-top: calc(20px + var(--header-height));
+  padding: 0 40px;
   display: flex;
   flex-direction: column;
   gap: 25px;
@@ -21,14 +24,28 @@
 .loader_component{
   border: 5px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 5px solid #fecc02;
+  border-top: 5px solid var(--primary-color);
   width: 30px;
   height: 30px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
+  /* -webkit-animation: spin 2s linear infinite; */
   animation: spin 2s linear infinite;
+}
+
+.no_results_component{
+  height: calc(100vh - 60px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
 }
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+@media only screen and (max-width: 600px) {
+  .posts_wrapper {
+    padding: 0 15px;
+  }
 }
